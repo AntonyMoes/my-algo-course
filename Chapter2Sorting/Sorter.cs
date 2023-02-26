@@ -44,12 +44,17 @@ public class Sorter {
     }
 
     public static void TestSorting() {
-        var sorter = new Sorter(new MergeSortingCycle());
+        // var sorter = new Sorter(new MergeSortingCycle());
+        var heap = new Heap<int>();
         var array = GenerateArray(15);
 
         Log(array);
         Console.Out.WriteLine(IsSorted(array));
-        sorter.Sort(ref array);
+        foreach (var i in array) {
+            heap.Add(i);
+        }
+        array = Enumerable.Range(0, array.Length).Select(_ => heap.Remove()).ToArray();
+        // sorter.Sort(ref array);
         Log(array);
         Console.Out.WriteLine(IsSorted(array));
         
